@@ -13,7 +13,7 @@ def calculate_primes(arr):
     return arr
 
 
-def is_prime(num):
+def calculate_prime(num):
     if num > 2:
         for i in range(3, int(num ** 0.5) + 1,2):
             if (num % i) == 0:
@@ -58,18 +58,18 @@ def get_primes_processing(arr):
 
 
 if __name__ == '__main__':
-    size = 10000000 # Number of random numbers to add
+    size = 100000000 # Number of random numbers to add
     arr_seq = np.random.randint(1, 100, size).tolist()
     arr_thread = np.random.randint(1, 100, size).tolist()
     arr_mul_proc = np.random.randint(1, 100, size).tolist()
 
-    get_primes(arr_numpy)
+    get_primes_sequential(arr_seq)
     get_primes_threading(arr_thread)
     get_primes_processing(arr_mul_proc)
 
     # Observations:
     # array length             sequential           threading           multiprocessing
-    #     1 000 000             5,963 sec.           6,020 sec.         0,386 sec.
-    #    10 000 000            59,674 sec.          58,941 sec.         1,687 sec.
-    #   100 000 000            600+   sec.          600+   sec.         16,960 sec.
-    # 1 000 000 000                N/A                  N/A                 N/A
+    #     1 000 000             0,628 sec.           0,614 sec.          0,472 sec.
+    #    10 000 000             6,407 sec.           6,034 sec.          1,806 sec.
+    #   100 000 000            56,810 sec.          58,225 sec.         11,760 sec.
+    # 1 000 000 000                N/A                  N/A            165,897 sec.
